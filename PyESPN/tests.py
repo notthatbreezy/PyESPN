@@ -12,7 +12,7 @@ class TestPyESPN(unittest.TestCase):
 
     def test_url(self):
         self.search.sports()
-        self.assertTrue(len(self.search.sport_list.items()) > 1)
+        self.assertEqual(self.search.status, "success")
 
 if __name__ == '__main__':
     unittest.main()
