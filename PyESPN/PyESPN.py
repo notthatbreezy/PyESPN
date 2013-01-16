@@ -25,8 +25,17 @@ class PyESPN():
         self.status = raw_dict['status']
         self.sport_list = raw_dict['sports']
 
+    def nba_player(self, player_id):
+        """Get information on specific NBA player"""
+        built_url = self.main_url + '/basketball/nba/athletes/%s/salary' % (player_id) + self.url_params
+        print built_url
+        self.player_data = json.loads(urllib.urlopen(built_url).read())
+
 if __name__ == '__main__':
     from login_data import *
     s = PyESPN(API_KEY)
     s.sports()
     pp.pprint(s.sport_list[0])
+    s.nba_player('2394')
+    # pp.pprint(s.sport_list[0])
+    pp.pprint(s.player_data)
