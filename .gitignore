@@ -37,3 +37,5 @@ nosetests.xml
 .env/include/python2.7
 
 .env/.Python
+
+PyESPN/login_data.py
