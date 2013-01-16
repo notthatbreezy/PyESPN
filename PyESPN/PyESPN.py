@@ -21,4 +21,12 @@ class PyESPN():
     def sports(self):
         """Get list of sports"""
         page = urllib.urlopen(self.main_url + urllib.urlencode(self.url_params))
-        self.sport_list = json.loads(page.read())
+        raw_dict = json.loads(page.read())
+        self.status = raw_dict['status']
+        self.sport_list = raw_dict['sports']
+
+if __name__ == '__main__':
+    from login_data import *
+    s = PyESPN(API_KEY)
+    s.sports()
+    pp.pprint(s.sport_list[0])
