@@ -4,7 +4,7 @@ import urllib
 import json
 import pprint
 
-pp = pprint.PrettyPrinter(indent=4)
+pp = pprint.PrettyPrinter(indent=2)
 
 
 class PyESPN():
@@ -15,13 +15,13 @@ class PyESPN():
     """
 
     def __init__(self, API_KEY):
-        self.url_params = {'apikey': API_KEY}
-        self.main_url = 'http://api.espn.com/v1/sports?'
+        self.url_params = '?' + urllib.urlencode({'apikey': API_KEY})
+        self.main_url = 'http://api.espn.com/v1/sports'
 
     def sports(self):
         """Get list of sports"""
-        page = urllib.urlopen(self.main_url + urllib.urlencode(self.url_params))
-        raw_dict = json.loads(page.read())
+        response = urllib.urlopen(self.main_url + self.url_params)
+        raw_dict = json.loads(response.read())
         self.status = raw_dict['status']
         self.sport_list = raw_dict['sports']
 
@@ -34,8 +34,7 @@ class PyESPN():
 if __name__ == '__main__':
     from login_data import *
     s = PyESPN(API_KEY)
-    s.sports()
-    pp.pprint(s.sport_list[0])
+    # s.sports()
     s.nba_player('2394')
     # pp.pprint(s.sport_list[0])
     pp.pprint(s.player_data)
