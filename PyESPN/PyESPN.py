@@ -6,8 +6,6 @@ import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
 
-main_url = 'http://api.espn.com/v1/sports?'
-
 
 class PyESPN():
     """Main class for accessing ESPN API
@@ -16,11 +14,11 @@ class PyESPN():
         - List of sports
     """
 
-    def __init__(self, main_url, API_KEY):
+    def __init__(self, API_KEY):
         self.url_params = {'apikey': API_KEY}
-        self.main_url = main_url
+        self.main_url = 'http://api.espn.com/v1/sports?'
 
     def sports(self):
         """Get list of sports"""
-        page = urllib.urlopen(main_url + urllib.urlencode(self.url_params))
-        self.sports = json.dumps(page.read())
+        page = urllib.urlopen(self.main_url + urllib.urlencode(self.url_params))
+        self.sport_list = json.loads(page.read())
