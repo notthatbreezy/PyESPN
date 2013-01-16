@@ -14,5 +14,9 @@ class TestPyESPN(unittest.TestCase):
         self.search.sports()
         self.assertEqual(self.search.status, "success")
 
+    # def test_nba(self):
+    #     self.nba_player('400')
+    #     self.assertEqual(self.search.status, "success")
+
 if __name__ == '__main__':
     unittest.main()
